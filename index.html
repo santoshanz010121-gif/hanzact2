@@ -6,7 +6,7 @@
 
 <body>
 
-<h1>Student CRUD System</h1>
+<h2>Student CRUD System</h2>
 
 Student ID:
 <input type="text" id="studentId">
@@ -82,33 +82,26 @@ function saveStudent() {
         return;
     }
 
-
     // CHECK DUPLICATE STUDENT ID
     for (let index = 0; index < students.length; index++) {
 
         if (students[index].id == id && index != editIndex) {
-
             alert("Student ID already exists.");
             return;
         }
     }
 
-
     // CHECK DUPLICATE STUDENT NAME
     for (let index = 0; index < students.length; index++) {
 
         if (
-            students[index].name.toLowerCase() ==
-            name.toLowerCase()
-            &&
-            index != editIndex
+            students[index].name.toLowerCase() == name.toLowerCase()
+            && index != editIndex
         ) {
-
             alert("Student name already exists.");
             return;
         }
     }
-
 
     if (editIndex == -1) {
 
@@ -134,7 +127,6 @@ function saveStudent() {
         alert("Student updated successfully.");
     }
 
-
     clearForm();
     displayStudents();
 }
@@ -146,7 +138,6 @@ function displayStudents() {
     let table = document.getElementById("studentTable");
 
     table.innerHTML = "";
-
 
     if (students.length == 0) {
 
@@ -160,7 +151,6 @@ function displayStudents() {
 
         return;
     }
-
 
     for (let index = 0; index < students.length; index++) {
 
@@ -176,7 +166,6 @@ function displayStudents() {
             "</td>" +
             "</tr>";
     }
-
 
     // TOTAL NUMBER OF STUDENTS
     document.getElementById("studentCount").innerHTML =
@@ -207,11 +196,9 @@ function deleteStudent(index) {
         "Are you sure you want to delete this student?"
     );
 
-
     if (answer == false) {
         return;
     }
-
 
     /*
     Move every item after the selected index
@@ -223,15 +210,11 @@ function deleteStudent(index) {
         position < students.length - 1;
         position++
     ) {
-
-        students[position] =
-            students[position + 1];
+        students[position] = students[position + 1];
     }
-
 
     // Reduce the array length to remove the last duplicate item
     students.length = students.length - 1;
-
 
     clearForm();
     displayStudents();
@@ -244,11 +227,8 @@ function deleteStudent(index) {
 function clearForm() {
 
     document.getElementById("studentId").value = "";
-
     document.getElementById("studentName").value = "";
-
     document.getElementById("studentCourse").value = "";
-
     document.getElementById("editIndex").value = "-1";
 }
 
@@ -266,7 +246,6 @@ function searchStudent() {
 
     let found = false;
 
-
     for (let index = 0; index < students.length; index++) {
 
         let studentName =
@@ -274,9 +253,8 @@ function searchStudent() {
 
         let match = false;
 
-
         /*
-        Search manually.
+        Manual search.
         No includes(), indexOf(), find(), or filter().
         */
 
@@ -288,30 +266,23 @@ function searchStudent() {
 
             let part = "";
 
-
             for (
                 let letter = 0;
                 letter < search.length;
                 letter++
             ) {
-
-                part +=
-                    studentName[position + letter];
+                part += studentName[position + letter];
             }
 
-
             if (part == search) {
-
                 match = true;
                 break;
             }
         }
 
-
         if (match == true) {
 
             found = true;
-
 
             table.innerHTML +=
                 "<tr>" +
@@ -326,7 +297,6 @@ function searchStudent() {
                 "</tr>";
         }
     }
-
 
     if (found == false) {
 
@@ -363,18 +333,14 @@ function sortStudents() {
                 students[second + 1].name.toLowerCase()
             ) {
 
-                let temporary =
-                    students[second];
+                let temporary = students[second];
 
-                students[second] =
-                    students[second + 1];
+                students[second] = students[second + 1];
 
-                students[second + 1] =
-                    temporary;
+                students[second + 1] = temporary;
             }
         }
     }
-
 
     displayStudents();
 }
